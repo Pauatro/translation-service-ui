@@ -15,3 +15,5 @@ Since the package manager used is NPM, you need to run the following commands:
 ```
   npm run dev
 ```
+
+It will send the requests to the local backend by default (port 8000) as set in the .env file
