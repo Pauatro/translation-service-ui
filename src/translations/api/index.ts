@@ -35,7 +35,7 @@ export class TranslationsApi {
         text,
       } as TranslateToJeringozaRequestBody,
     });
-    return translation.data;
+    return translation?.data;
   }
 
   static async translateToLanguage(language: string, text: string) {
@@ -47,7 +47,7 @@ export class TranslationsApi {
         text,
       } as TranslateToLanguageRequestBody,
     });
-    return translation.data;
+    return translation?.data;
   }
 
   static async fetchAvailableLanguages() {
@@ -55,6 +55,6 @@ export class TranslationsApi {
       url: this.translationsApiEndpoints.fetchLanguages,
       method: ApiMethod.GET,
     });
-    return translation.data;
+    return translation?.data;
   }
 }
