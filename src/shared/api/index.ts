@@ -21,7 +21,7 @@ export const fetchApi = async <T = undefined>({
   url,
   headers = {},
   data,
-}: FetchApiParams): Promise<OptionalReturn<T>> => {
+}: FetchApiParams): Promise<OptionalReturn<T | undefined>> => {
   const defaultHeaders: Record<string, string> = {
     "Content-Type": "application/json",
   };
@@ -42,7 +42,7 @@ export const fetchApi = async <T = undefined>({
       return JSON.parse(responseText) as OptionalReturn<T>;
     }
 
-    return undefined as OptionalReturn<T>;
+    return undefined as OptionalReturn<undefined>;
   } catch (e) {
     // TODO: manage API errors
   }
