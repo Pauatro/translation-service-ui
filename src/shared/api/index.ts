@@ -6,8 +6,6 @@ export enum ApiMethod {
   DELETE = "DELETE",
 }
 
-type OptionalReturn<T> = T extends undefined ? void : T;
-
 interface FetchApiParams {
   method: ApiMethod;
   url: string;
@@ -21,7 +19,7 @@ export const fetchApi = async <T = undefined>({
   url,
   headers = {},
   data,
-}: FetchApiParams): Promise<OptionalReturn<T | undefined>> => {
+}: FetchApiParams): Promise<T | undefined> => {
   const defaultHeaders: Record<string, string> = {
     "Content-Type": "application/json",
   };
@@ -39,10 +37,10 @@ export const fetchApi = async <T = undefined>({
     const responseText = await response.text();
 
     if (responseText) {
-      return JSON.parse(responseText) as OptionalReturn<T>;
+      return JSON.parse(responseText) as T;
     }
 
-    return undefined as OptionalReturn<undefined>;
+    return undefined;
   } catch (e) {
     // TODO: manage API errors
   }
